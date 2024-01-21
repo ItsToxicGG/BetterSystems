@@ -144,7 +144,7 @@ class MySQLProvider {
 
     public function permmutePlayer(string $uuid, string $reason = ""): void {
         $stmt = $this->db->prepare("UPDATE bettersystems SET muted = true, mute_reason = ? WHERE uuid = ?");
-        $stmt->bind_param("iss", $duration, $reason, $uuid);
+        $stmt->bind_param("iss", $reason, $uuid);
         $stmt->execute();
     }
 

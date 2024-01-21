@@ -5,21 +5,20 @@ namespace Toxic;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat as TF;
-use Toxic\provider\{MySQLProvider, SQLiteProvider, Provider};
+use Toxic\tasks\DurationTask;
+use Toxic\provider\{MySQLProvider, SQLiteProvider};
 use Toxic\commands\{BanCommand, KickCommand, MuteCommand, PermBanCommand, PermMuteCommand, PermUnBanCommand, PermUnMuteCommand, UnBanCommand, UnMuteCommand};
 use mysqli;
 use SQLite3;
 
-class Main extends PluginBase implements Listener {
+class BetterSystem extends PluginBase implements Listener {
 
     private $provider;
 
     /** @var BetterSystem */
     private static $instance;
 
-    protected function onLoad(): void {
-        // Perform any actions on plugin load
-    }
+    protected function onLoad(): void { /** ? */ }
 
     protected function onEnable(): void {
         $this->getServer()->getPluginManager()->registerEvents(new BSListener($this), $this);
@@ -45,7 +44,7 @@ class Main extends PluginBase implements Listener {
 
         $this->registerProvider();
         
-        self::$instance = self;
+        self::$instance = $this;
     }
 
     protected function onDisable(): void {

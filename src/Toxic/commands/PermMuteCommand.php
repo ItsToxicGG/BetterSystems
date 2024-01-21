@@ -64,7 +64,7 @@ class PermMuteCommand extends Command {
         $form->sendToPlayer($muter);
     }
 
-    public function mutePlayer(Player $muter, string $targetPlayer, string $reason, string $duration) {
+    public function mutePlayer(Player $muter, string $targetPlayer, string $reason) {
         $muted = Server::getInstance()->getPlayerExact($targetPlayer);
         $uuid = $muted->getUniqueId()->toString();
     

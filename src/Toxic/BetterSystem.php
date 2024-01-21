@@ -49,12 +49,11 @@ class BetterSystem extends PluginBase implements Listener {
 
     protected function onDisable(): void {
         $this->getLogger()->info(TF::RED . "BetterSystems has been disabled!");
-        if($this->provider instanceof MySQLProvider){
-            $this->provider->db->close;
-        } else if($this->provider instanceof SQLiteProvider){
-            $this->provider->db->close;
+        
+        if ($this->provider instanceof MySQLProvider || $this->provider instanceof SQLiteProvider) {
+            $this->provider->closeDatabase();
         }
-    }
+    }    
 
     public function registerProvider() {
         $configValue = strtolower($this->getConfig()->get("Provider"));

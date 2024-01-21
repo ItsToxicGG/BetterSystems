@@ -10,13 +10,10 @@ class BSListener implements Listener {
 
     private $plugin;
 
-    public function __construct(Main $plugin) {
+    public function __construct(BetterSystem $plugin) {
         $this->plugin = $plugin;
     }
 
-
-
-    // Event listener method
     public function onPlayerJoin(PlayerJoinEvent $event): void {
         $player = $event->getPlayer();
     }

@@ -66,7 +66,7 @@ class KickCommand extends Command {
     }
 
     public function kickPlayer(Player $kicker, string $targetPlayer, string $reason) {
-        $target = Server::getInstance()->getPlayer($targetPlayer);
+        $target = Server::getInstance()->getPlayerExact($targetPlayer);
 
         if ($target instanceof Player) {
             $target->kick($reason);

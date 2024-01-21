@@ -3,7 +3,7 @@
 namespace Toxic\tasks;
 
 use pocketmine\scheduler\Task;
-use Toxic\Main;
+use Toxic\BetterSystem;
 use Toxic\provider\MySQLProvider;
 use Toxic\provider\SQLiteProvider;
 
@@ -11,7 +11,7 @@ class DurationTask extends Task {
 
     private $plugin;
 
-    public function __construct(Main $plugin) {
+    public function __construct(BetterSystem $plugin) {
         $this->plugin = $plugin;
     }
 

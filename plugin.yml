@@ -1,0 +1,23 @@
+name: BetterSystems
+description: An plugin which adds ban, mute, etc systems to the game
+version: 0.0.1
+author: ItsToxicGG
+main: Toxic\BetterSystem
+api: 5.0.0
+
+permissions:
+   bs.kick:
+      default: op
+      description: "Permission to kick players"
+   bs.ban: 
+      default: op
+      description: "Permission to ban & unban players"
+   bs.permban:
+      default: op
+      description: "Permission to perm ban players"
+   bs.mute:
+      default: op
+      description: "Permission to mute & unmute players"
+   bs.permmute:
+      default: op
+      description: "Permission to perm mute players"

@@ -1,0 +1,28 @@
+# Provider - Sqlite & MySQL
+Provider: MySQL
+
+# Mysql Info - Required If Provider is set to MySQL
+SQL-Host: localhost
+SQL-Username: root
+SQL-Password:
+SQL-DBName: bettersystem
+SQL-Port: 3306
+
+# Kick System - Have BS/BetterSystems Kick System
+Kick-System: true
+
+# Ban System - Have BS/BetterSystems Ban System
+Ban-System: true
+# Ban Message u can also include {duration} to get the duration of the ban & reason using {reason}
+# Only colors u can use are {RED}, {RESET} / RESETS COLOR, {GREEN}
+TEMPBan-MSG: "{RED}You were banned for {duration}, reason is {reason}"
+# U can do everything an ban mute can say just not duration
+PERMBan-MSG: "{RED}You were perm banned for {reason}"
+
+# Mute System - Have BS/BetterSystems Mute System
+Mute-System: true
+# mute Message u can also include {duration} to get the duration of the mute & reason using {reason}
+# Only colors u can use are {RED}, {RESET} / RESETS COLOR, {GREEN}
+TEMPMute-MSG: "{RED}You were muted for {duration}, reason is {reason}"
+# U can do everything an temp mute can say just not duration
+PERMMute-MSG: "{RED}You were perm muted for {reason}"

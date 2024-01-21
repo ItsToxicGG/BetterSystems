@@ -22,7 +22,7 @@ class BSListener implements Listener {
         $uuid = $player->getUniqueId()->toString();
         $username = $player->getName();
         /** It already in the function checks if player data exists or not */
-        $provider->addPlayerData($uuid, $username);
+        $this->plugin->getProvider()->addPlayerData($uuid, $username);
         $reason = $this->plugin->getProvider()->getBanReason($uuid);
         $duration = $this->f($this->plugin->getProvider()->getBanDuration($uuid));
         /** PART 2 - Config Related Stuff */

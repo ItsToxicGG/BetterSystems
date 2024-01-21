@@ -14,7 +14,7 @@ class BSListener implements Listener {
         $this->plugin = $plugin;
     }
 
-    public function onPlayerJoin(PlayerJoinEvent $event): void { $player = $event->getPlayer() }
+    public function onPlayerJoin(PlayerJoinEvent $event): void { $player = $event->getPlayer(); }
 
     public function onPlayerLogin(PlayerLoginEvent $event){
         /** PART 1 - Player Related stuff */

@@ -50,16 +50,13 @@ class PermMuteCommand extends Command {
 
     public function sendReasonForm(Player $muter, string $targetPlayer) {
         $form = new CustomForm(function (Player $player, $data) use ($muter, $targetPlayer) {
-            if ($data[0]) {
                 $reason = $data[1];
                 $this->mutePlayer($muter, $targetPlayer, $reason);
-            }
         });
 
         $form->setTitle("Perm Mute");
         $form->addLabel("Enter the reason for muting $targetPlayer:");
 
-        $form->addToggle("Confirm");
         $form->addInput("Reason:");
         $form->sendToPlayer($muter);
     }

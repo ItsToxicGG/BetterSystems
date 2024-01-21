@@ -51,19 +51,16 @@ class MuteCommand extends Command {
 
     public function sendReasonForm(Player $muter, string $targetPlayer) {
         $form = new CustomForm(function (Player $player, $data) use ($muter, $targetPlayer) {
-            if ($data[0]) {
                 $reason = $data[1];
                 $duration = $data[2];
                 $this->mutePlayer($muter, $targetPlayer, $reason, $duration);
                 $ev = new PlayerMuteEvent($muter, $targetPlayer, $muter->getName());
                 $ev->call();
-            }
         });
 
         $form->setTitle("Mute");
         $form->addLabel("Enter the reason for muting $targetPlayer:");
 
-        $form->addToggle("Confirm");
         $form->addInput("Reason:");
         $form->addInput("Duration:", "Example: 1d, 2h, 1s");
         $form->sendToPlayer($muter);

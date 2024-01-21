@@ -47,26 +47,37 @@ class DurationTask extends Task {
 
         switch ($databaseType) {
             case 'mysql':
-                $query = "SELECT uuid, banned, banned_duration, muted, mute_duration FROM dc";
+                $query = "SELECT uuid, banned, banned_duration, muted, mute_duration FROM bettersystems";
                 $result = $provider->db->query($query);
                 break;
 
             case 'sqlite':
             default:
-                $query = "SELECT uuid, banned, banned_duration, muted, mute_duration FROM dc";
+                $query = "SELECT uuid, banned, banned_duration, muted, mute_duration FROM bettersystems";
                 $result = $provider->db->query($query);
                 break;
         }
 
         $allPlayersData = [];
 
-        while ($row = $result->fetch_assoc()) {
-            $allPlayersData[$row['uuid']] = [
+        if($databaseType === "mysql"){
+            while ($row = $result->fetch_assoc()) {
+              $allPlayersData[$row['uuid']] = [
                 'banned' => $row['banned'],
                 'banned_duration' => $row['banned_duration'],
                 'muted' => $row['muted'],
                 'mute_duration' => $row['mute_duration'],
-            ];
+              ];
+            }
+        } else if ($databaseType === "sqlite"){
+            while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+                $allPlayersData[$row['uuid']] = [
+                    'banned' => $row['banned'],
+                    'banned_duration' => $row['banned_duration'],
+                    'muted' => $row['muted'],
+                    'mute_duration' => $row['mute_duration'],
+                ];
+            }
         }
 
         return $allPlayersData;

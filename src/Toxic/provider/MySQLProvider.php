@@ -148,7 +148,7 @@ class MySQLProvider {
         $stmt->execute();
     }
 
-    public function unbanPlayer(string $uuid): void {
+    public function unbanPlayer(string $uuid): void { // unmutePlayer
         $stmt = $this->db->prepare("UPDATE bettersystems SET banned = false, banned_duration = 0 WHERE uuid = ?");
         $stmt->bind_param("s", $uuid);
         $stmt->execute();

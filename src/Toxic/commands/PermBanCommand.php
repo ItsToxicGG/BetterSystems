@@ -50,16 +50,13 @@ class PermBanCommand extends Command {
 
     public function sendReasonForm(Player $banner, string $targetPlayer) {
         $form = new CustomForm(function (Player $player, $data) use ($banner, $targetPlayer) {
-            if ($data[0]) {
                 $reason = $data[1];
                 $this->banPlayer($banner, $targetPlayer, $reason);
-            }
         });
 
         $form->setTitle("Perm Ban");
         $form->addLabel("Enter the reason for muting $targetPlayer:");
 
-        $form->addToggle("Confirm");
         $form->addInput("Reason:");
         $form->sendToPlayer($banner);
     }

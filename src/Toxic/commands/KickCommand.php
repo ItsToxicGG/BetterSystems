@@ -50,16 +50,12 @@ class KickCommand extends Command {
 
     public function sendReasonForm(Player $kicker, string $targetPlayer) {
         $form = new CustomForm(function (Player $player, $data) use ($kicker, $targetPlayer) {
-            if ($data[0]) {
                 $reason = $data[1];
                 $this->kickPlayer($kicker, $targetPlayer, $reason);
-            }
         });
 
         $form->setTitle("Kick Reason");
         $form->addLabel("Enter the reason for kicking $targetPlayer:");
-
-        $form->addToggle("Confirm");
         $form->addInput("Reason:");
 
         $form->sendToPlayer($kicker);

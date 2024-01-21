@@ -51,20 +51,16 @@ class BanCommand extends Command {
 
     public function sendReasonForm(Player $banner, string $targetPlayer) {
         $form = new CustomForm(function (Player $player, $data) use ($banner, $targetPlayer) {
-            if ($data[0]) {
                 $t = Server::getInstance()->getPlayerExact($targetPlayer);
                 $reason = $data[1];
                 $duration = $data[2];
                 $this->banPlayer($banner, $targetPlayer, $reason, $duration);
                 $ev = new PlayerBanEvent($banner, $targetPlayer, $banner->getName());
                 $ev->call();
-            }
         });
 
         $form->setTitle("Ban");
         $form->addLabel("Enter the reason for muting $targetPlayer:");
-
-        $form->addToggle("Confirm");
         $form->addInput("Reason:");
         $form->addInput("Duration:", "Example: 1d, 2h, 1s");
         $form->sendToPlayer($banner);

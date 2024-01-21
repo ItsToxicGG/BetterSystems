@@ -30,10 +30,12 @@ class BetterSystem extends PluginBase implements Listener {
             $this->getServer()->getCommandMap()->register("unban", new UnBanCommand());
             $this->getServer()->getCommandMap()->register("permban", new PermBanCommand());
             $this->getServer()->getCommandMap()->register("unpermban", new PermUnBanCommand());
-        } else if($this->getConfig()->get("Kick-System") === true){
+        }
+        if($this->getConfig()->get("Kick-System") === true){
             $this->unregisterCommands(['kick']);
             $this->getServer()->getCommandMap()->register("kick", new KickCommand());
-        } else if($this->getConfig()->get("Mute-System") === true){
+        }
+        if($this->getConfig()->get("Mute-System") === true){
             $this->getServer()->getCommandMap()->register("mute", new MuteCommand());
             $this->getServer()->getCommandMap()->register("unmute", new UnMuteCommand());
             $this->getServer()->getCommandMap()->register("permmute", new PermMuteCommand());
@@ -93,7 +95,7 @@ class BetterSystem extends PluginBase implements Listener {
     private function initializeSQLiteProvider(): SQLiteProvider {
         $databasePath = $this->getDataFolder() . "bettersystems.db";
     
-        return new SQLiteProvider(new SQLite3($databasePath));
+        return new SQLiteProvider($databasePath);
     }    
 
     public static function getInstance(): BetterSystem{

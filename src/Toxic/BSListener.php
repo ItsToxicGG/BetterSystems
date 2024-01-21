@@ -42,9 +42,9 @@ class BSListener implements Listener {
         $permbanmsg = str_replace("{RESET}", TF::RESET, $permbanmsg);
         $permbanmsg = str_replace("{GREEN}", TF::GREEN, $permbanmsg);
         /** PART 5 - stop player from joining */
-        if($this->plugin->getProvider()->isBanned($uuid) === true){
+        if($this->plugin->getProvider()->isBanned($uuid)){
            $player->kick($banmsg);
-        } else if($this->plugin->getProvider()->isPermBan($uuid) === true){
+        } else if($this->plugin->getProvider()->isPermBan($uuid)){
            $player->kick($permbanmsg);
         }
     }
@@ -73,10 +73,10 @@ class BSListener implements Listener {
         $permmutemsg = str_replace("{RESET}", TF::RESET, $permmutemsg);
         $permmutemsg = str_replace("{GREEN}", TF::GREEN, $permmutemsg);
         /** PART 5 - stop player from chatting */
-        if($this->plugin->getProvider()->isMuted($uuid) === true){
+        if($this->plugin->getProvider()->isMuted($uuid)){
            $event->cancel();
            $player->sendMessage($mutemsg);
-        } else if($this->plugin->getProvider()->isPermMuted($uuid) === true){
+        } else if($this->plugin->getProvider()->isPermMuted($uuid)){
            $event->cancel();
            $player->sendMessage($permmutemsg);
         }

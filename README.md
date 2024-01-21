@@ -47,8 +47,8 @@ public function example(Player $player){
    $permUnBanPlayer = $provider->unpermbanPlayer($uuid);
    $ispermban = $provider->isPermBan($uuid);
    $ispermmuted = $provider->isPermMuted($uuid)
-   $ispermbanByUsername = $provider->isPermBanByUsername($uuid);
-   $ispermmutedByUsername = $provider->isPermMuteByUsername($uuid);
+   $ispermbanByUsername = $provider->isPermBanByUsername($username);
+   $ispermmutedByUsername = $provider->isPermMuteByUsername($username);
 }
 ```
 

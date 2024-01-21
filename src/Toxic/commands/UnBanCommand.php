@@ -4,6 +4,7 @@ namespace Toxic\commands;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use Toxic\event\{PlayerBanEvent, PlayerUnBanEvent, PlayerUnMuteEvent, PlayerMuteEvent};
 use pocketmine\player\Player;
 use pocketmine\utils\TextFormat as TF;
 use forms\SimpleForm;
@@ -36,9 +37,10 @@ class UnBanCommand extends Command {
     
                 if ($provider->isBannedByUsername($username)) {
                     $provider->unbanPlayerByUsername($username);
-                    $player->sendMessage("Player $username has been unmuted.");
+                    $ev = new PlayerUnBanEvent($player, $username);
+                    $ev->call();
                 } else {
-                    $player->sendMessage("Player $username is not muted.");
+                    $player->sendMessage(TF::RED . "Player $username is not banned.");
                 }
             }
         });

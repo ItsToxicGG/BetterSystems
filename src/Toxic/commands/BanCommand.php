@@ -4,6 +4,7 @@ namespace Toxic\commands;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use Toxic\event\{PlayerBanEvent, PlayerUnBanEvent, PlayerUnMuteEvent, PlayerMuteEvent};
 use pocketmine\player\Player;
 use pocketmine\utils\TextFormat as TF;
 use forms\SimpleForm;
@@ -51,9 +52,12 @@ class BanCommand extends Command {
     public function sendReasonForm(Player $banner, string $targetPlayer) {
         $form = new CustomForm(function (Player $player, $data) use ($banner, $targetPlayer) {
             if ($data[0]) {
+                $t = Server::getInstance()->getPlayerExact($targetPlayer);
                 $reason = $data[1];
                 $duration = $data[2];
-                $this->BanPlayer($banner, $targetPlayer, $reason, $duration);
+                $this->banPlayer($banner, $targetPlayer, $reason, $duration);
+                $ev = new PlayerBanEvent($banner, $targetPlayer, $banner->getName());
+                $ev->call();
             }
         });
 

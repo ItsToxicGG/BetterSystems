@@ -9,5 +9,5 @@ An plugin for a better systems
 - [X] Mute System   
 - [X] Form Support
 - [X] MultiProviders [MySQL & Sqlite3]
-- [ ] Custom Events
+- [X] Custom Events
 - [X] API [Kinda?]

@@ -4,6 +4,7 @@ namespace Toxic\commands;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use Toxic\event\{PlayerBanEvent, PlayerUnBanEvent, PlayerUnMuteEvent, PlayerMuteEvent};
 use pocketmine\player\Player;
 use pocketmine\utils\TextFormat as TF;
 use forms\SimpleForm;
@@ -54,6 +55,8 @@ class MuteCommand extends Command {
                 $reason = $data[1];
                 $duration = $data[2];
                 $this->mutePlayer($muter, $targetPlayer, $reason, $duration);
+                $ev = new PlayerMuteEvent($muter, $targetPlayer, $muter->getName());
+                $ev->call();
             }
         });
 

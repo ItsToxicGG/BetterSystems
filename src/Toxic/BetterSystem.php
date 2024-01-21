@@ -18,7 +18,7 @@ class BetterSystem extends PluginBase implements Listener {
     /** @var BetterSystem */
     private static $instance;
 
-    protected function onLoad(): void { /** ? */ }
+    protected function onLoad(): void { self::$instance = $this; }
 
     protected function onEnable(): void {
         $this->getServer()->getPluginManager()->registerEvents(new BSListener($this), $this);
@@ -43,8 +43,6 @@ class BetterSystem extends PluginBase implements Listener {
         $this->getLogger()->info(TF::GREEN . "BetterSystems has been enabled!");
 
         $this->registerProvider();
-        
-        self::$instance = $this;
     }
 
     protected function onDisable(): void {

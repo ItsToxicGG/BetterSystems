@@ -3,7 +3,8 @@
 namespace Toxic;
 
 use pocketmine\event\Listener;
-use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\{PlayerLoginEvent, PlayerJoinEvent, PlayerChatEvent};
+use pocketmine\utils\TextFormat as TF;
 
 class BSListener implements Listener {
 
@@ -30,18 +31,18 @@ class BSListener implements Listener {
         $banmsg = $this->plugin->getConfig()->get("TEMPBan-MSG");
         $permbanmsg = $this->plugin->getConfig()->get("PERMBan-MSG");
         /** PART 3 - Ban MSG */
-        $banmsg = str_replace("{duration}", $duration, $mutemsg);
-        $banmsg = str_replace("{reason}", $reason, $mutemsg);
-        $banmsg = str_replace("{RED}", TF::RED, $mutemsg);
-        $banmsg = str_replace("{WHITE}", TF::WHITE, $mutemsg);
-        $banmsg = str_replace("{RESET}", TF::RESET, $mutemsg);
-        $banmsg = str_replace("{GREEN}", TF::GREEN, $mutemsg);
+        $banmsg = str_replace("{duration}", $duration, $banmsg);
+        $banmsg = str_replace("{reason}", $reason, $banmsg);
+        $banmsg = str_replace("{RED}", TF::RED, $banmsg);
+        $banmsg = str_replace("{WHITE}", TF::WHITE, $banmsg);
+        $banmsg = str_replace("{RESET}", TF::RESET, $banmsg);
+        $banmsg = str_replace("{GREEN}", TF::GREEN, $banmsg);
         /** PART 4 - Perm Ban MSG */
-        $permbanmsg = str_replace("{reason}", $reason, $mutemsg);
-        $permbanmsg = str_replace("{RED}", TF::RED, $mutemsg);
-        $permbanmsg = str_replace("{WHITE}", TF::WHITE, $mutemsg);
-        $permbanmsg = str_replace("{RESET}", TF::RESET, $mutemsg);
-        $permbanmsg = str_replace("{GREEN}", TF::GREEN, $mutemsg);
+        $permbanmsg = str_replace("{reason}", $reason, $permbanmsg);
+        $permbanmsg = str_replace("{RED}", TF::RED, $permbanmsg);
+        $permbanmsg = str_replace("{WHITE}", TF::WHITE, $permbanmsg);
+        $permbanmsg = str_replace("{RESET}", TF::RESET, $permbanmsg);
+        $permbanmsg = str_replace("{GREEN}", TF::GREEN, $permbanmsg);
         /** PART 5 - stop player from joining */
         if($this->plugin->getProvider()->isBanned($uuid) === true){
            $player->kick($banmsg);
@@ -67,12 +68,12 @@ class BSListener implements Listener {
         $mutemsg = str_replace("{RESET}", TF::RESET, $mutemsg);
         $mutemsg = str_replace("{GREEN}", TF::GREEN, $mutemsg);
         /** PART 4 - Perm Mute MSG */
-        $permmutemsg = str_replace("{duration}", $duration, $mutemsg);
-        $permmutemsg = str_replace("{reason}", $reason, $mutemsg);
-        $permmutemsg = str_replace("{RED}", TF::RED, $mutemsg);
-        $permmutemsg = str_replace("{WHITE}", TF::WHITE, $mutemsg);
-        $permmutemsg = str_replace("{RESET}", TF::RESET, $mutemsg);
-        $permmutemsg = str_replace("{GREEN}", TF::GREEN, $mutemsg);
+        $permmutemsg = str_replace("{duration}", $duration, $permmutemsg);
+        $permmutemsg = str_replace("{reason}", $reason, $permmutemsg);
+        $permmutemsg = str_replace("{RED}", TF::RED, $permmutemsg);
+        $permmutemsg = str_replace("{WHITE}", TF::WHITE, $permmutemsg);
+        $permmutemsg = str_replace("{RESET}", TF::RESET, $permmutemsg);
+        $permmutemsg = str_replace("{GREEN}", TF::GREEN, $permmutemsg);
         /** PART 5 - stop player from chatting */
         if($this->plugin->getProvider()->isMuted($uuid) === true){
            $event->cancel();

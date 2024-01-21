@@ -6,8 +6,9 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\utils\TextFormat as TF;
 use Toxic\provider\{MySQLProvider, SQLiteProvider, Provider};
-use Toxic\commands\{BanCommand, KickCommand, MuteCommand};
+use Toxic\commands\{BanCommand, KickCommand, MuteCommand, PermBanCommand, PermMuteCommand, PermUnBanCommand, PermUnMuteCommand, UnBanCommand, UnMuteCommand};
 use mysqli;
+use SQLite3;
 
 class Main extends PluginBase implements Listener {
 
@@ -44,7 +45,7 @@ class Main extends PluginBase implements Listener {
 
         $this->registerProvider();
         
-        self::$instance = $this;
+        self::$instance = self;
     }
 
     protected function onDisable(): void {
